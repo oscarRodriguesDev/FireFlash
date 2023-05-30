@@ -121,3 +121,61 @@ export function fireFLash_Exit(função,fireFlash_nativeLogout,auth) {
     //...
   });
 }
+
+
+//função para logar por telefone
+
+/**
+Realiza a autenticação de um usuário no Firebase Auth utilizando o número de telefone fornecido e executa a função fornecida como parâmetro caso a autenticação seja bem sucedida.
+@param {string} id: - O ID do elemento HTML onde será renderizado o recaptcha.
+@param {string} codigo_pais: - O código do país em que o número de telefone está registrado.
+@param {string} ddd: - O DDD do número de telefone a ser autenticado.
+@param {string} telefone: - O número de telefone a ser autenticado.
+@param {Function} função: - A função a ser executada após a autenticação bem sucedida do usuário.
+@param {function} auth: função nativa do Firebse uma instancia do authenticator, importada como getAuth
+@param {object} captcha: um objeto nativo do Firebase, importado como RecaptchaVerifier
+@param {function} loginPhone: uma função nativa do firebase, importada como signInWithEmailAndPassword
+@returns {void} Nenhum retorno. A função realiza a autenticação do usuário e trata os possíveis erros, exibindo mensagens de log no console.
+@example
+// Exemplo de uso:
+fireFLash_LoginPhone(id,codigo_pais,ddd,telefone,minhaFuncao,getAuth,RecaptchaVerifier,signInWithPhoneNumber);
+@version 1.0.0
+@author:Oscar Rodrigues
+Data: [30/05/2023]
+*/
+export function fireFlash_phoneLogin(id, codigo_pais, ddd, telefone, função,auth,captcha,loginPhone) {
+  auth.languageCode = 'BR';
+  window.recaptchaVerifier = new captcha(id, {
+    'size': 'invisible',
+    'callback': (response) => {
+    },
+    'expired-callback': () => {
+      //time expired
+    }
+  }, auth);
+
+  const phoneNumber = '+' + codigo_pais + ddd + telefone
+  const appVerifier = window.recaptchaVerifier;
+  loginPhone(auth, phoneNumber, appVerifier)
+    .then((confirmationResult) => {
+      window.confirmationResult = confirmationResult;
+      //confirmando o codigo recebido
+      const code = window.prompt('digite o codigo recebido')
+      confirmationResult.confirm(code)
+        .then((result) => {
+          //caso sucesso realiza a ação determinada pelo dev
+          função()
+          // ...
+        })
+        .catch((error) => {
+          // Código de verificação inválido
+          console.log('Código de verificação inválido:', error);
+          // ...
+        });
+    }).catch((error) => {
+      // Error; SMS not sent
+      console.log('ocorreu o erro \n ' + error + ' \nao enviar o codigo')
+      // ...
+    });
+}
+

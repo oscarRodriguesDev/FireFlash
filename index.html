@@ -331,30 +331,161 @@ fireFlash_login('exemplo@email.com', 'senha123', minhaFuncao);</code></pre>
                     </pre>
                     </code>
 
-                    <p>Geralmente no html deixamos um botão para o usuario efetuar logout, o usuario e delogado quando <br>
-                    o navegador e fechado, ou ainda o desenvolvedor pode definir um tempo que, caso o usuario fique inativo <br>
-                o logout é efeutado automaticamente</p>
-        </section>
+            <p>Geralmente no html deixamos um botão para o usuario efetuar logout, o usuario e delogado quando <br>
+                o navegador e fechado, ou ainda o desenvolvedor pode definir um tempo que, caso o usuario fique inativo
+                <br>
+                o logout é efeutado automaticamente
+            </p>
 
             <h3>Entendendo a função fireFlash_logout</h3>
-                    <p> Realiza o logout do usuário atualmente autenticado no Firebase Auth e executa a função fornecida como parâmetro caso o logout seja bem sucedido.</p>
-                    
-                    <h3>Parâmetros:</h3>
-                    <ul>
-                      <li><code>função</code> (Function) - A função a ser executada após o logout bem sucedido do usuário.</li>
-                      <li><code>native_Logout</code> (function) - A função nativa do Firebase utilizada para realizar o logout do usuário.</li>
-                      <li><code>auth</code> (function) - A função nativa do Firebase usada para autenticação de usuários.</li>
-                    </ul>
-                  
-                    <h3>Retorno:</h3>
-                    <p>Nenhum retorno. A função realiza o logout do usuário e trata os possíveis erros, exibindo mensagens de log no console.</p>
-                  
-                    <h3>Exemplo de uso:</h3>
-                    <pre><code>// Exemplo de uso:
-                  fireFLash_Exit(minhaFuncao, signOut(), getAuth);</code></pre>
-                  
-                
-         
+            <p> Realiza o logout do usuário atualmente autenticado no Firebase Auth e executa a função fornecida como
+                parâmetro caso o logout seja bem sucedido.</p>
+
+            <h3>Parâmetros:</h3>
+            <ul>
+                <li><code>função</code> (Function) - A função a ser executada após o logout bem sucedido do usuário.
+                </li>
+                <li><code>native_Logout</code> (function) - A função nativa do Firebase utilizada para realizar o logout
+                    do usuário.</li>
+                <li><code>auth</code> (function) - A função nativa do Firebase usada para autenticação de usuários.</li>
+            </ul>
+
+            <h3>Retorno:</h3>
+            <p>Nenhum retorno. A função realiza o logout do usuário e trata os possíveis erros, exibindo mensagens de
+                log no console.</p>
+
+            <h3>Exemplo de uso:</h3>
+            <pre><code>// Exemplo de uso:
+                    fireFLash_Exit(minhaFuncao, signOut(), getAuth);
+                </code></pre>
+            <p>Assim como na função de login, para logout o desenvolvedor deverá informar uma função que será acionada
+                <br>
+                caso o logout seja bem sucedido, normalmente o logout leva o usuario de volta para a tela de login, mas
+                <br>
+                isso fica a criterio do desenvolvedor e seguindo as métricas do projeto que está sendo desenvolvido
+            </p>
+        </section>
+
+        <section>
+            <h2>Autenticando usuarios através de telefone com FireFlash</h2>
+
+            <h3>Preparando o ambiente para autenticação por telefone</h3>
+
+            <p>Antes de mais nada é preciso importar o modulo FireFlash para autenticação por telefone</p>
+
+            <code><pre>import {fireFlash_phoneLogin,} from "./FireFlash-remote.js";
+            </pre></code>
+
+            <p>a seguir precisamos declarar a função no arquivo de configuração FireFlash</p>
+
+            <code><pre> fireFlash_phoneLogin('cp','+55','55','955555555',message_of_login,auth,RecaptchaVerifier,signInWithPhoneNumber)</pre></code>
+            
+            <p>Para autenticação de usuários no firebase, a biblioteca FireFlash utiliza a função fireFlash_phoneLogin,
+                veja aaixo como ela funciona:</p>
+
+            <p>Observe que ainda tem parametros que precisam ser importados, no caso o auth,RecaptchaVerifier esignInWithPhoneNumber, <br>
+            logo mais abaixo explicaremos cada componente de forma individual, no momento agora é preciso que você <br>
+        perceba quais elementos devem ser importados</p>
+
+        <code><pre>import { getAuth,signOut,RecaptchaVerifier,signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+        </pre></code>
+
+        <p>se tiver seguido o passo a passo corretamente, o seu arquivo de configuração estará muito parecido com esse:</p>
+        <p style="color:red; font-size: 14px;" > obs: No exemplo abaixo o arquivo de configuração está configurado apenas para <br>
+        login por telefone, porem o natural é que outras importações e outras funções estejam sendo executadas em conjunto <br>
+    por exemplo: é possível na hora do desenvolvimento utilizar mais de um tipo de autenticação, telefone e email <br>
+isso alem de ser muito pratico, pode gerar mais segurança aos dados armazenados no Firebase, mais adiante, <br>
+será exemplificado um exemplo de autenticação multifator</p>
+        <code><pre>
+            
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+import { getAuth,RecaptchaVerifier,signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+import {fireFlash_phoneLogin,} from "./FireFlash-remote.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA-1fyyPjb9lJg3KVkvLl9URIomaBCXmMg",
+  authDomain: "fireflash-6376c.firebaseapp.com",
+  projectId: "fireflash-6376c",
+  storageBucket: "fireflash-6376c.appspot.com",
+  messagingSenderId: "326063964860",
+  appId: "1:326063964860:web:33d8d46d1275bee64206b9"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth()
+fireFlash_phoneLogin('cp','+55','55','55555555',message_of_login,auth,RecaptchaVerifier,signInWithPhoneNumber)
+        </pre></code>
+
+
+
+            <h3>Funcionamento da função fireFlash_phoneLogin</h3>
+            <p>Esta função é usada para realizar o login por telefone com o uso de um sistema de verificação de
+                reCAPTCHA.</p>
+
+            <h3>Parâmetros:</h3>
+            <ul>
+                <li><code>id</code>: o ID do elemento HTML onde o reCAPTCHA será renderizado</li>
+                <li><code>codigo_pais</code>: o código do país do número de telefone</li>
+                <li><code>ddd</code>: o DDD (código de área) do número de telefone</li>
+                <li><code>telefone</code>: o número de telefone</li>
+                <li><code>função</code>: a função a ser executada após o login bem-sucedido</li>
+                <li><code>auth</code>: objeto de autenticação</li>
+                <li><code>captcha</code>: objeto reCAPTCHA</li>
+                <li><code>loginPhone</code>: função para realizar o login por telefone</li>
+            </ul>
+
+            <h3>Passos:</h3>
+            <ol>
+                <li>Define o código do idioma de autenticação como 'BR' (Brasil).</li>
+                <li>Cria uma instância do objeto reCAPTCHA invisível no elemento com o ID fornecido.</li>
+                <li>Define uma função de retorno vazia para ser executada quando o reCAPTCHA for verificado com sucesso.
+                </li>
+                <li>Define uma função para ser executada quando o reCAPTCHA expirar.</li>
+                <li>Obtém o número de telefone completo concatenando o código do país, DDD e telefone.</li>
+                <li>Obtém uma referência para o objeto reCAPTCHA criado anteriormente.</li>
+                <li>Chama a função de login por telefone passando o objeto de autenticação, o número de telefone e o
+                    verificador do reCAPTCHA.</li>
+                <li>Quando o resultado da confirmação do número for retornado, a janela de confirmação é atribuída à
+                    variável <code>confirmationResult</code>.</li>
+                <li>Solicita ao usuário que digite o código recebido.</li>
+                <li>Confirma o código inserido chamando a função <code>confirm</code> no objeto
+                    <code>confirmationResult</code>.
+                </li>
+                <li>Se a confirmação for bem-sucedida, a função fornecida é executada.</li>
+                <li>Se ocorrer algum erro durante o processo de confirmação, o erro é tratado e uma mensagem de erro é
+                    exibida no console.</li>
+                <li>Se ocorrer algum erro durante o login por telefone, o erro é tratado e uma mensagem de erro é
+                    exibida no console.</li>
+            </ol>
+            <h3>Como utilizar a autenticação por telefone:</h3>
+            A função fireFlash_phoneLogin funciona em duas vias:
+            <ul>
+                <li>O usuário está se conectando pela primeira vez</li>
+                <p>nesse caso o usuário vai passar pela verificação recaptcha, e depois receberá um codigo de <br>
+                    confirmação no numero informado, caso tudo ocorra bem ele sera autenticado pelo firebase, caso <br>
+                    contrario a tentativa gerará um erro que poderá ser percebido no console de logs
+
+                </p>
+                <li>O usuário já se conectou anteriormente</li>
+                <p>Já nesse caso, o usuário não vai passar pela verificação recaptcha, mas ainda sim, precisará <br>
+                    confirmar o numero através de código enviado por sms para o numero informado</p>
+            </ul>
+            <p>Em Ambos os casos o usuario precisa informar seu numero e posteriormente o codigo recebido, para Isso
+                <br> o DEV precisa ter criado um formulario para receber esses dados do usuario, no caso dessa versão da
+                função <br>
+                o usuário, não precisa informar o local onde o usuario deverá digitar o código recebido, póis um prompt
+                se abrirá <br>
+                para o usuario digitar o código recebido
+            </p>
+            <p>Uma ultima observação sobre a função, se deve ao fato de que o DEV informará como parametro uma função
+                que <br>
+                será executada caso a tentativa de login seja sucesso, lembre-se de ser o mais criativo possivel, a fim
+                de manter <br>
+                a acessibilidade, e a interação do usuário com o aplicativo que está desenvolvendo</p>
+        </section>
+
+
+
 </body>
 
 </html>
