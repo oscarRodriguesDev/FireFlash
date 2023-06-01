@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="module" src="FireFlash-remote.js"></script>
+    <script src="program.js"></script>
+
     <!--utilizar o prisma-->
     <!--bootstrap 5-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -21,25 +23,35 @@
 </head>
 
 <body>
-    <h1>FireFlash</h1>
-    <h4>Boas vindas!</h4>
-    <p>Bem-vindo à documentação da biblioteca FireFlash! Desenvolvida com o objetivo de simplificar a <br>
-        utilização dos produtos Firebase, a FireFlash proporciona aos desenvolvedores uma maneira mais intuitiva <br>
-        e prática de se conectar com o Firebase e usufruir de seus recursos.</p>
+    <!--Boas vindas-->
+    <section id="helho" onclick="reveal_section('helho')">
+        <h2>Bem vindo A FireFlash</h2>
+        <h4>Estamos felizes por sua escolha e esperamos que todas as suas duvidas sejam sanadas neste <br>
+        documento</h4>
+        <p>Essa é a  documentação da biblioteca FireFlash! Desenvolvida com o objetivo de simplificar a <br>
+            utilização dos produtos Firebase, a FireFlash proporciona aos desenvolvedores uma maneira mais intuitiva
+            <br>
+            e prática de se conectar com o Firebase e usufruir de seus recursos.</p>
 
-    <p>Com um processo totalmente open source, disponibilizamos o código-fonte para que os usuários possam ter <br>
+        <p>Com um processo totalmente open source, disponibilizamos o código-fonte para que os usuários possam ter <br>
 
-        acesso e contribuir com o projeto, tornando-o cada vez mais robusto e funcional. Nossa biblioteca oferece <br>
-        uma solução eficiente para quem busca aumentar a produtividade em seus projetos, sem abrir mão da <br>
-        qualidade e segurança proporcionadas pelo Firebase.</p>
+            acesso e contribuir com o projeto, tornando-o cada vez mais robusto e funcional. Nossa biblioteca oferece
+            <br>
+            uma solução eficiente para quem busca aumentar a produtividade em seus projetos, sem abrir mão da <br>
+            qualidade e segurança proporcionadas pelo Firebase.</p>
 
-    <p>Este documento tem como objetivo fornecer informações precisas e detalhadas sobre o uso da FireFlash, <br>
-        permitindo que você aproveite ao máximo todas as funcionalidades disponíveis. Aqui você encontrará desde <br>
-        instruções básicas de instalação até exemplos práticos de implementação. Esperamos que esta documentação <br>
-        possa ser útil e esclarecedora para todos os usuários da FireFlash.</p>
+        <p>Este documento tem como objetivo fornecer informações precisas e detalhadas sobre o uso da FireFlash, <br>
+            permitindo que você aproveite ao máximo todas as funcionalidades disponíveis. Aqui você encontrará desde
+            <br>
+            instruções básicas de instalação até exemplos práticos de implementação. Esperamos que esta documentação
+            <br>
+            possa ser útil e esclarecedora para todos os usuários da FireFlash.</p>
 
-    <section>
-        <h3>Antes de começar...</h3>
+    </section>
+
+    <!--Antes de começar-->
+    <section id="introduction" onclick="reveal_section('introduction')">
+        <h2>Antes de começar...</h2>
         <p>A biblioteca FireFlash foi projetada para ser utilizada em conjunto com o JavaScript modular.<br>
             Essa abordagem modular traz diversos benefícios, como uma estrutura organizada, reutilização de <br>
             código e melhor gerenciamento de dependências.</p>
@@ -59,8 +71,8 @@
         </p>
     </section>
 
-    <!--preparando o ambiente-->
-    <section>
+    <!--Criando um projeto no firebase-->
+    <section id="requirements" onclick="reveal_section('requirements')">
         <h2>Criando um projeto no firebase</h2>
         <p>Para começar a utilizar a FireFlash, primeiro é necessário criar um projeto no firebase. <br>
             Para isso, acesse o link abaixo e crie um novo projeto.</p>
@@ -81,7 +93,9 @@
         <a href="https://firebase.google.com/docs/web/setup"
             target="_blank">https://firebase.google.com/docs/web/setup</a>
     </section>
-    <section>
+
+    <!--Criando o arquivo de configuração-->
+    <section id="enviroment" onclick="reveal_section('enviroment')">
         <h2>Criando o arquivo de configuração</h2>
         <p>Essa é uma etapa de suma importancia para que você consiga utilizar os serviços da FireFlash <br>
             as diretrizes definidas abaixo não podem diferir do que está sendo especificado, caso isso <br>
@@ -116,16 +130,11 @@
                 para seu projeto, copie o link abaixo para que vcê possa utlizar em seu projeto
             </p>
 
-
             <input type="text" id="meuInput" disabled="true" style="width: 50%;"
                 value="https://oscarrodriguesdev.github.io/FireFlash/FireFlash-remote.js" onselectstart="return false;"
                 onmousedown="return false;">
 
             <input type="button" value="copy">
-
-
-
-
             <li> <b>Importando o modulo FireFlash para seu projeto</b></li>
             <p>Para importar o modulo do FireFlash no seu projeto abra seu arquivo <code> Fire-config.js</code> aponte
                 para
@@ -141,7 +150,9 @@
   firebaseflash_verification">
         </ol>
     </section>
-    <section>
+
+    <!--Como utilizar o FireFlash-->
+    <section id="createAcount" onclick="reveal_section('createAcount')">
         <h2> Como utilizar o FireFlash </h2>
         <p>Uma vez importado o modulo do FireFlash para o arquivo .js que você colocou a variavel de configuração, <br>
             você poderá abrir o console de logs e verificar se a biblioteca FireFlash está executando no seu <br>
@@ -176,145 +187,147 @@
         <p>Abra o Console e perceba que mesmo não importando a função fireFlash_verification, ela continua sendo <br>
             executada
         </p>
-        <section>
-            <h2>Função fireFlash_createAcount</h2>
-            <p>Vamos entender como funciona a função fireFlash_createAcount.</p>
-            <p>A função <i>fireFlash_createAcount</i> tem 4 parâmetros:</p>
-            <ol>
-                <li><code>email</code> (string): Contém o endereço de email do usuário a ser criado.</li>
-                <li><code>senha</code> (string): Contém a senha do usuário a ser criado.</li>
-                <li><code>auth</code> (função): Função nativa do Firebase Authenticator, importada do Firebase, <br>
-                    usada como parâmetro para autenticação.</li>
-                <li><code>native_createLogin_email</code> (função): Função nativa do Firebase Authenticator, <br>
-                    importada do Firebase, usada como parâmetro para criação de usuário com email e senha. <br>
-                    No Firebase, o nome dessa função é <code>createUserWithEmailAndPassword</code>.</li>
-            </ol>
-            <p>A função não possui retorno e realiza a criação do usuário no Firebase Auth, <br>
-                tratando possíveis erros e exibindo mensagens de log no console.</p>
-            <p>Exemplo de uso:</p>
-            <pre><code>fireFlash_createAcount('exemplo@email.com', 'senha123',createUserWithEmailAndPassword,getAuth);</code></pre>
-            <p>Se você tentar executar seu metodo de login agora vai perceber que vamos ober ainda um erro, isso se deve
-                <br>
-                ao fato de ainda não termos importado o modulo do Authenticator do Firebase, para importar o modulo do
-                Authenticator <br>
-                você devera adcionar as seguintes linhas no inicio do seu arquivo de configuração:
-            </p>
-            <code><pre>import { getAuth,createUserWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";</pre></code>
-            </p>
-            <h3>O que acabamos de fazer?</h3>
-            Ao importar getAuth e createUserWithEmailAndPassword, estamos utilizando funções nativas do Firebase <br>
-            que são as que fazem a autenticação acontecer, mas antes de finalizar ainda precisamos de uma instancia de
-            getAuth <br>
-            <code><pre>const auth = getAuth()</pre></code>
-            <p>Se tiver seguido o passo a passo corretamente, seu arquivo de configuração do FireFlash estara igual ao
-                exemplo abaixo, <br>
-                e você ja poderá usar a função do autenticator para criar contas de usuario para seu aplicativo <br></p>
 
-            <code><pre>
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-import { getAuth,createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
-import {fireFlash_createAcount} from "https://oscarrodriguesdev.github.io/FireFlash/FireFlash-remote.js";
-        const firebaseConfig = {
-          apiKey: "AIzaSyA-1fyyPjb9lJasdfasdfas9URIomaBCXmMg",
-          authDomain: "fireflash-6376c.firebaseapp.com",
-          projectId: "fireflash-asdfc",
-          storageBucket: "fireflash-6376c.appspot.com",
-          messagingSenderId: "3asdfasdfsadf",
-          appId: "1:asdfsdf2646:web:32545684sadg4856854"
-        };
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth()
-    </pre></code>
-            <p>Uma vez que tudo ja foi definido corretamente, basta recuperar os dados de um formulario html, e usar a
-                <br>
-                função para criar a conta do usuario usando e-mail e senha
-            </p>
-        </section>
+        <h2>Função fireFlash_createAcount</h2>
+        <p>Vamos entender como funciona a função fireFlash_createAcount.</p>
+        <p>A função <i>fireFlash_createAcount</i> tem 4 parâmetros:</p>
+        <ol>
+            <li><code>email</code> (string): Contém o endereço de email do usuário a ser criado.</li>
+            <li><code>senha</code> (string): Contém a senha do usuário a ser criado.</li>
+            <li><code>auth</code> (função): Função nativa do Firebase Authenticator, importada do Firebase, <br>
+                usada como parâmetro para autenticação.</li>
+            <li><code>native_createLogin_email</code> (função): Função nativa do Firebase Authenticator, <br>
+                importada do Firebase, usada como parâmetro para criação de usuário com email e senha. <br>
+                No Firebase, o nome dessa função é <code>createUserWithEmailAndPassword</code>.</li>
+        </ol>
+        <p>A função não possui retorno e realiza a criação do usuário no Firebase Auth, <br>
+            tratando possíveis erros e exibindo mensagens de log no console.</p>
+        <p>Exemplo de uso:</p>
+        <pre><code>fireFlash_createAcount('exemplo@email.com', 'senha123',createUserWithEmailAndPassword,getAuth);</code></pre>
+        <p>Se você tentar executar seu metodo de login agora vai perceber que vamos ober ainda um erro, isso se deve
+            <br>
+            ao fato de ainda não termos importado o modulo do Authenticator do Firebase, para importar o modulo do
+            Authenticator <br>
+            você devera adcionar as seguintes linhas no inicio do seu arquivo de configuração:
+        </p>
+        <code><pre>import { getAuth,createUserWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";</pre></code>
+        </p>
+        <h3>O que acabamos de fazer?</h3>
+    <p>Ao importar getAuth e createUserWithEmailAndPassword, estamos utilizando funções nativas do Firebase <br>
+        que são as que fazem a autenticação acontecer, mas antes de finalizar ainda precisamos de uma instancia de
+        getAuth</p> <br>
+        <code><pre>const auth = getAuth()</pre></code>
+        <p>Se tiver seguido o passo a passo corretamente, seu arquivo de configuração do FireFlash estara igual ao
+            exemplo abaixo, <br>
+            e você ja poderá usar a função do autenticator para criar contas de usuario para seu aplicativo <br></p>
 
-        <section>
-            <h2>Login com e-mail e senha</h2>
-            <p>Apesar de ser uma atividade do usuário,o desenvolvedor deverá deixar todo o caminho preparado <br>
-                para que o mesmo consiga realizar o login sem nenhuma dificuldade.</p>
-            <p>Em vias de regras gerais, prepara-se uma tela de login, onde o usuario consiga informar seus dados <br>
-                e assim efetuar login.
-            </p>
-            <p>Fireflash possui uma forma simplificada de lidar com o login por email e senha, vejamos abaixo como <br>
-                isso é feito. </p>
-            <p>A primeira coisa que precisamos fazer é importar a função getAuth e a função signInWithEmailAndPassword
-                <br>
-                ambas nativas do firebase, praticamente da mesma forma como procedemos na função fireFlash_createAcount
-                <br>
-                precimos tambem da instancia de auth veja abaixo como ficaria nosso arquivo:
-            </p>
-            <code><pre>
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-<b style="color:red;">import { getAuth,signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";</b>
-<b style="color:red;">import {fireFlash_login} from "https://oscarrodriguesdev.github.io/FireFlash/FireFlash-remote.js";</b>
-        const firebaseConfig = {
-          apiKey: "AIzaSyA-1fyyPjb9lJasdfasdfas9URIomaBCXmMg",
-          authDomain: "fireflash-6376c.firebaseapp.com",
-          projectId: "fireflash-asdfc",
-          storageBucket: "fireflash-6376c.appspot.com",
-          messagingSenderId: "3asdfasdfsadf",
-          appId: "1:asdfsdf2646:web:32545684sadg4856854"
-        };
-        const app = initializeApp(firebaseConfig);
-        <b style="color:red;"> const auth = getAuth()</b>
-      </pre></code>
-            <p>Depois de importado os recursos necessarios, basta criar um formulario html, para que o usuario <br>
-                digite seu e-mail e senha para se conectar, a FireFlash informar o sucesso do login ou não no console de
-                logs <br>
-                do navegador </p>
+        <code><pre>
+                        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+                        import { getAuth,createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+                        import {fireFlash_createAcount} from "https://oscarrodriguesdev.github.io/FireFlash/FireFlash-remote.js";
+                        const firebaseConfig = {
+                            apiKey: "AIzaSyA-1fyyPjb9lJasdfasdfas9URIomaBCXmMg",
+                            authDomain: "fireflash-6376c.firebaseapp.com",
+                            projectId: "fireflash-asdfc",
+                            storageBucket: "fireflash-6376c.appspot.com",
+                            messagingSenderId: "3asdfasdfsadf",
+                            appId: "1:asdfsdf2646:web:32545684sadg4856854"
+                        };
+                        const app = initializeApp(firebaseConfig);
+                        const auth = getAuth()
+                    </pre></code>
+        <p>Uma vez que tudo ja foi definido corretamente, basta recuperar os dados de um formulario html, e usar a<br>
+            função para criar a conta do usuario usando e-mail e senha
+        </p>
+    </section>
 
-            <h2>Função fireFlash_login</h2>
-            <p>Realiza a autenticação de um usuário no Firebase Auth com as credenciais fornecidas (email e senha) e
-                executa a função fornecida como parâmetro caso a autenticação seja bem sucedida.</p>
+    <!--Função fireFlash_createAcount-->
+    <section id="loginmail" onclick="reveal_section('loginmail')">
+        <h2>Login com e-mail e senha</h2>
+        <p>Apesar de ser uma atividade do usuário,o desenvolvedor deverá deixar todo o caminho preparado <br>
+            para que o mesmo consiga realizar o login sem nenhuma dificuldade.</p>
+        <p>Em vias de regras gerais, prepara-se uma tela de login, onde o usuario consiga informar seus dados <br>
+            e assim efetuar login.
+        </p>
+        <p>Fireflash possui uma forma simplificada de lidar com o login por email e senha, vejamos abaixo como <br>
+            isso é feito. </p>
+        <p>A primeira coisa que precisamos fazer é importar a função getAuth e a função signInWithEmailAndPassword
+            <br>
+            ambas nativas do firebase, praticamente da mesma forma como procedemos na função fireFlash_createAcount
+            <br>
+            precimos tambem da instancia de auth veja abaixo como ficaria nosso arquivo:
+        </p>
+        <code><pre>
+                import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+                <b style="color:red;">import { getAuth,signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";</b>
+                <b style="color:red;">import {fireFlash_login} from "https://oscarrodriguesdev.github.io/FireFlash/FireFlash-remote.js";</b>
+                const firebaseConfig = {
+                    apiKey: "AIzaSyA-1fyyPjb9lJasdfasdfas9URIomaBCXmMg",
+                    authDomain: "fireflash-6376c.firebaseapp.com",
+                    projectId: "fireflash-asdfc",
+                    storageBucket: "fireflash-6376c.appspot.com",
+                    messagingSenderId: "3asdfasdfsadf",
+                    appId: "1:asdfsdf2646:web:32545684sadg4856854"
+                };
+                const app = initializeApp(firebaseConfig);
+                <b style="color:red;"> const auth = getAuth()</b>
+            </pre></code>
+        <p>Depois de importado os recursos necessarios, basta criar um formulario html, para que o usuario <br>
+            digite seu e-mail e senha para se conectar, a FireFlash informar o sucesso do login ou não no console de
+            logs <br>
+            do navegador </p>
 
-            <h3>Parâmetros:</h3>
-            <ul>
-                <li><code>email</code> (string) - O endereço de email do usuário a ser autenticado.</li>
-                <li><code>senha</code> (string) - A senha do usuário a ser autenticado.</li>
-                <li><code>função</code> (Function) - A função a ser executada após a autenticação bem sucedida do
-                    usuário.</li>
-                <li><code>native_createLogin_email</code> (function) - A função nativa do Firebase utilizada para
-                    autenticar o usuário com email e senha.</li>
-                <li><code>auth</code> (function) - A função nativa do Firebase usada para autenticação de usuários.</li>
-            </ul>
+        <h2>Função fireFlash_login</h2>
+        <p>Realiza a autenticação de um usuário no Firebase Auth com as credenciais fornecidas (email e senha) e <br>
+            executa a função fornecida como parâmetro caso a autenticação seja bem sucedida.</p>
 
-            <h3>Retorno:</h3>
-            <p>Nenhum retorno. A função realiza a autenticação do usuário e trata os possíveis erros, exibindo mensagens
-                de log no console.</p>
+        <h3>Parâmetros:</h3>
+        <ul>
+            <li><code>email</code> (string) - O endereço de email do usuário a ser autenticado.</li>
+            <li><code>senha</code> (string) - A senha do usuário a ser autenticado.</li>
+            <li><code>função</code> (Function) - A função a ser executada após a autenticação bem sucedida do
+                usuário.</li>
+            <li><code>native_createLogin_email</code> (function) - A função nativa do Firebase utilizada para
+                autenticar o usuário com email e senha.</li>
+            <li><code>auth</code> (function) - A função nativa do Firebase usada para autenticação de usuários.</li>
+        </ul>
 
-            <h3>Exemplo de uso:</h3>
-            <pre><code>// Exemplo de uso:
-fireFlash_login('exemplo@email.com', 'senha123', minhaFuncao);</code></pre>
-            <p>Antes de finalizar esse topico, é preciso chamar sua atenção para o terceiro paramentro da função <br>
-                fireFlash_login, isso porque se trata de uma função definida pelo desenvolvedor, utilizador da
-                biblioteca FireFlash <br>
-                Essa função deve ser criada a fim de informar o usuario que seu login foi bem sucedido, portanto deve se
-                usar <br>
-                a criatividade e gerar uma interação que consiga dar ao usuario a transparencia de que sua solicitação
-                foi <br>
-                realizada com sucesso, ou não</p>
-        </section>
+        <h3>Retorno:</h3>
+        <p>Nenhum retorno. A função realiza a autenticação do usuário e trata os possíveis erros, exibindo mensagens
+            de log no console.</p>
 
-        <section>
-            <h2>fireFlash_logout</h2>
-            <p>Realiza a autenticação de um usuário no Firebase Auth e apaga o cookie de autenticação e o <br>
-                token de acesso armazenado no navegador.</p>
-            <p>Depois de chamar essa função, o usuario precisa logar novamente para continuar utilizando os serviços do
-                Firebase <br>
-                e as demais funcionalidades definidas pelo desenvolvedor</p>
-            <p>Para utilizar a função fireFlash_logout, é necessario importá-la </p>
-            <code><pre> import {fireFlash_logout} from "https://oscarrodriguesdev.github.io/FireFlash/FireFlash-remote.js";</pre></code>
-            <p>tambem será necessario o modulo nativo do firebase que realiza o logout do usuário:</p>
-            <code><pre>import { getAuth,signOut } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+        <h3>Exemplo de uso:</h3>
+        <pre><code>// Exemplo de uso:
+        fireFlash_login('exemplo@email.com', 'senha123', minhaFuncao);</code></pre>
+        <p>Antes de finalizar esse topico, é preciso chamar sua atenção para o terceiro paramentro da função <br>
+            fireFlash_login, isso porque se trata de uma função definida pelo desenvolvedor, utilizador da
+            biblioteca FireFlash <br>
+            Essa função deve ser criada a fim de informar o usuario que seu login foi bem sucedido, portanto deve se
+            usar <br>
+            a criatividade e gerar uma interação que consiga dar ao usuario a transparencia de que sua solicitação
+            foi <br>
+            realizada com sucesso, ou não</p>
+
+    </section>
+    
+    <!--login com emais e senha-->
+    <section id="logout" onclick="reveal_section('logout')">
+        <h2>fireFlash_logout</h2>
+        <p>Realiza a autenticação de um usuário no Firebase Auth e apaga o cookie de autenticação e o <br>
+            token de acesso armazenado no navegador.</p>
+        <p>Depois de chamar essa função, o usuario precisa logar novamente para continuar utilizando os serviços do
+            Firebase <br>
+            e as demais funcionalidades definidas pelo desenvolvedor</p>
+        <p>Para utilizar a função fireFlash_logout, é necessario importá-la </p>
+        <code><pre> import {fireFlash_logout} from "https://oscarrodriguesdev.github.io/FireFlash/FireFlash-remote.js";</pre></code>
+        <p>tambem será necessario o modulo nativo do firebase que realiza o logout do usuário:</p>
+        <code><pre>import { getAuth,signOut } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
 </pre></code>
 
-            <p>Seu arquivo de configuração deverá estar semelhante a esse:</p>
+        <p>Seu arquivo de configuração deverá estar semelhante a esse:</p>
 
 
-            <code><pre>
+        <code><pre>
             import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
             <b style="color:red;">import { getAuth,signOut } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";</b>
             <b style="color:red;">import {fireFlash_logout} from "https://oscarrodriguesdev.github.io/FireFlash/FireFlash-remote.js";</b>
@@ -331,71 +344,69 @@ fireFlash_login('exemplo@email.com', 'senha123', minhaFuncao);</code></pre>
                     </pre>
                     </code>
 
-            <p>Geralmente no html deixamos um botão para o usuario efetuar logout, o usuario e delogado quando <br>
-                o navegador e fechado, ou ainda o desenvolvedor pode definir um tempo que, caso o usuario fique inativo
-                <br>
-                o logout é efeutado automaticamente
-            </p>
+        <p>Geralmente no html deixamos um botão para o usuario efetuar logout, o usuario e delogado quando <br>
+            o navegador e fechado, ou ainda o desenvolvedor pode definir um tempo que, caso o usuario fique inativo
+            <br>
+            o logout é efeutado automaticamente
+        </p>
 
-            <h3>Entendendo a função fireFlash_logout</h3>
-            <p> Realiza o logout do usuário atualmente autenticado no Firebase Auth e executa a função fornecida como
-                parâmetro caso o logout seja bem sucedido.</p>
+        <h3>Entendendo a função fireFlash_logout</h3>
+        <p> Realiza o logout do usuário atualmente autenticado no Firebase Auth e executa a função fornecida como
+            parâmetro caso o logout seja bem sucedido.</p>
 
-            <h3>Parâmetros:</h3>
-            <ul>
-                <li><code>função</code> (Function) - A função a ser executada após o logout bem sucedido do usuário.
-                </li>
-                <li><code>native_Logout</code> (function) - A função nativa do Firebase utilizada para realizar o logout
-                    do usuário.</li>
-                <li><code>auth</code> (function) - A função nativa do Firebase usada para autenticação de usuários.</li>
-            </ul>
+        <h3>Parâmetros:</h3>
+        <ul>
+            <li><code>função</code> (Function) - A função a ser executada após o logout bem sucedido do usuário.
+            </li>
+            <li><code>native_Logout</code> (function) - A função nativa do Firebase utilizada para realizar o logout
+                do usuário.</li>
+            <li><code>auth</code> (function) - A função nativa do Firebase usada para autenticação de usuários.</li>
+        </ul>
 
-            <h3>Retorno:</h3>
-            <p>Nenhum retorno. A função realiza o logout do usuário e trata os possíveis erros, exibindo mensagens de
-                log no console.</p>
+        <h3>Retorno:</h3>
+        <p>Nenhum retorno. A função realiza o logout do usuário e trata os possíveis erros, exibindo mensagens de
+            log no console.</p>
 
-            <h3>Exemplo de uso:</h3>
-            <pre><code>// Exemplo de uso:
+        <h3>Exemplo de uso:</h3>
+        <pre><code>// Exemplo de uso:
                     fireFLash_Exit(minhaFuncao, signOut(), getAuth);
                 </code></pre>
-            <p>Assim como na função de login, para logout o desenvolvedor deverá informar uma função que será acionada
-                <br>
-                caso o logout seja bem sucedido, normalmente o logout leva o usuario de volta para a tela de login, mas
-                <br>
-                isso fica a criterio do desenvolvedor e seguindo as métricas do projeto que está sendo desenvolvido
-            </p>
-        </section>
+        <p>Assim como na função de login, para logout o desenvolvedor deverá informar uma função que será acionada
+            <br>
+            caso o logout seja bem sucedido, normalmente o logout leva o usuario de volta para a tela de login, mas
+            <br>
+            isso fica a criterio do desenvolvedor e seguindo as métricas do projeto que está sendo desenvolvido
+        </p>
+    </section>
 
-        <section>
-            <h2>Autenticando usuarios através de telefone com FireFlash</h2>
-
-            <h3>Preparando o ambiente para autenticação por telefone</h3>
-
-            <p>Antes de mais nada é preciso importar o modulo FireFlash para autenticação por telefone</p>
-
-            <code><pre>import {fireFlash_phoneLogin,} from "./FireFlash-remote.js";
+    <!--login com telefone-->
+    <section id="loginPhone" onclick="reveal_section('loginPhone')">
+        <h2>Autenticando usuarios através de telefone com FireFlash</h2>
+        <h3>Preparando o ambiente para autenticação por telefone</h3>
+        <p>Antes de mais nada é preciso importar o modulo FireFlash para autenticação por telefone</p>
+        <code><pre>import {fireFlash_phoneLogin,} from "./FireFlash-remote.js";
             </pre></code>
-
-            <p>a seguir precisamos declarar a função no arquivo de configuração FireFlash</p>
-
-            <code><pre> fireFlash_phoneLogin('cp','+55','55','955555555',message_of_login,auth,RecaptchaVerifier,signInWithPhoneNumber)</pre></code>
-            
-            <p>Para autenticação de usuários no firebase, a biblioteca FireFlash utiliza a função fireFlash_phoneLogin,
-                veja aaixo como ela funciona:</p>
-
-            <p>Observe que ainda tem parametros que precisam ser importados, no caso o auth,RecaptchaVerifier esignInWithPhoneNumber, <br>
+        <p>a seguir precisamos declarar a função no arquivo de configuração FireFlash</p>
+        <code><pre> fireFlash_phoneLogin('cp','+55','55','955555555',message_of_login,auth,RecaptchaVerifier,signInWithPhoneNumber)</pre></code>
+        <p>Para autenticação de usuários no firebase, a biblioteca FireFlash utiliza a função fireFlash_phoneLogin,
+            veja aaixo como ela funciona:</p>
+        <p>Observe que ainda tem parametros que precisam ser importados, no caso o auth,RecaptchaVerifier
+            esignInWithPhoneNumber, <br>
             logo mais abaixo explicaremos cada componente de forma individual, no momento agora é preciso que você <br>
-        perceba quais elementos devem ser importados</p>
-
+            perceba quais elementos devem ser importados</p>
         <code><pre>import { getAuth,signOut,RecaptchaVerifier,signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
         </pre></code>
-
-        <p>se tiver seguido o passo a passo corretamente, o seu arquivo de configuração estará muito parecido com esse:</p>
-        <p style="color:red; font-size: 14px;" > obs: No exemplo abaixo o arquivo de configuração está configurado apenas para <br>
-        login por telefone, porem o natural é que outras importações e outras funções estejam sendo executadas em conjunto <br>
-    por exemplo: é possível na hora do desenvolvimento utilizar mais de um tipo de autenticação, telefone e email <br>
-isso alem de ser muito pratico, pode gerar mais segurança aos dados armazenados no Firebase, mais adiante, <br>
-será exemplificado um exemplo de autenticação multifator</p>
+        <p>se tiver seguido o passo a passo corretamente, o seu arquivo de configuração estará muito parecido com esse:
+        </p>
+        <p style="color:red; font-size: 14px;"> obs: No exemplo abaixo o arquivo de configuração está configurado apenas
+            para <br>
+            login por telefone, porem o natural é que outras importações e outras funções estejam sendo executadas em
+            conjunto <br>
+            por exemplo: é possível na hora do desenvolvimento utilizar mais de um tipo de autenticação, telefone e
+            email <br>
+            isso alem de ser muito pratico, pode gerar mais segurança aos dados armazenados no Firebase, mais adiante,
+            <br>
+            será exemplificado um exemplo de autenticação multifator</p>
         <code><pre>
             
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
@@ -418,73 +429,71 @@ fireFlash_phoneLogin('cp','+55','55','55555555',message_of_login,auth,RecaptchaV
 
 
 
-            <h3>Funcionamento da função fireFlash_phoneLogin</h3>
-            <p>Esta função é usada para realizar o login por telefone com o uso de um sistema de verificação de
-                reCAPTCHA.</p>
+        <h3>Funcionamento da função fireFlash_phoneLogin</h3>
+        <p>Esta função é usada para realizar o login por telefone com o uso de um sistema de verificação de
+            reCAPTCHA.</p>
 
-            <h3>Parâmetros:</h3>
-            <ul>
-                <li><code>id</code>: o ID do elemento HTML onde o reCAPTCHA será renderizado</li>
-                <li><code>codigo_pais</code>: o código do país do número de telefone</li>
-                <li><code>ddd</code>: o DDD (código de área) do número de telefone</li>
-                <li><code>telefone</code>: o número de telefone</li>
-                <li><code>função</code>: a função a ser executada após o login bem-sucedido</li>
-                <li><code>auth</code>: objeto de autenticação</li>
-                <li><code>captcha</code>: objeto reCAPTCHA</li>
-                <li><code>loginPhone</code>: função para realizar o login por telefone</li>
-            </ul>
+        <h3>Parâmetros:</h3>
+        <ul>
+            <li><code>id</code>: o ID do elemento HTML onde o reCAPTCHA será renderizado</li>
+            <li><code>codigo_pais</code>: o código do país do número de telefone</li>
+            <li><code>ddd</code>: o DDD (código de área) do número de telefone</li>
+            <li><code>telefone</code>: o número de telefone</li>
+            <li><code>função</code>: a função a ser executada após o login bem-sucedido</li>
+            <li><code>auth</code>: objeto de autenticação</li>
+            <li><code>captcha</code>: objeto reCAPTCHA</li>
+            <li><code>loginPhone</code>: função para realizar o login por telefone</li>
+        </ul>
 
-            <h3>Passos:</h3>
-            <ol>
-                <li>Define o código do idioma de autenticação como 'BR' (Brasil).</li>
-                <li>Cria uma instância do objeto reCAPTCHA invisível no elemento com o ID fornecido.</li>
-                <li>Define uma função de retorno vazia para ser executada quando o reCAPTCHA for verificado com sucesso.
-                </li>
-                <li>Define uma função para ser executada quando o reCAPTCHA expirar.</li>
-                <li>Obtém o número de telefone completo concatenando o código do país, DDD e telefone.</li>
-                <li>Obtém uma referência para o objeto reCAPTCHA criado anteriormente.</li>
-                <li>Chama a função de login por telefone passando o objeto de autenticação, o número de telefone e o
-                    verificador do reCAPTCHA.</li>
-                <li>Quando o resultado da confirmação do número for retornado, a janela de confirmação é atribuída à
-                    variável <code>confirmationResult</code>.</li>
-                <li>Solicita ao usuário que digite o código recebido.</li>
-                <li>Confirma o código inserido chamando a função <code>confirm</code> no objeto
-                    <code>confirmationResult</code>.
-                </li>
-                <li>Se a confirmação for bem-sucedida, a função fornecida é executada.</li>
-                <li>Se ocorrer algum erro durante o processo de confirmação, o erro é tratado e uma mensagem de erro é
-                    exibida no console.</li>
-                <li>Se ocorrer algum erro durante o login por telefone, o erro é tratado e uma mensagem de erro é
-                    exibida no console.</li>
-            </ol>
-            <h3>Como utilizar a autenticação por telefone:</h3>
-            A função fireFlash_phoneLogin funciona em duas vias:
-            <ul>
-                <li>O usuário está se conectando pela primeira vez</li>
-                <p>nesse caso o usuário vai passar pela verificação recaptcha, e depois receberá um codigo de <br>
-                    confirmação no numero informado, caso tudo ocorra bem ele sera autenticado pelo firebase, caso <br>
-                    contrario a tentativa gerará um erro que poderá ser percebido no console de logs
+        <h3>Passos:</h3>
+        <ol>
+            <li>Define o código do idioma de autenticação como 'BR' (Brasil).</li>
+            <li>Cria uma instância do objeto reCAPTCHA invisível no elemento com o ID fornecido.</li>
+            <li>Define uma função de retorno vazia para ser executada quando o reCAPTCHA for verificado com sucesso.
+            </li>
+            <li>Define uma função para ser executada quando o reCAPTCHA expirar.</li>
+            <li>Obtém o número de telefone completo concatenando o código do país, DDD e telefone.</li>
+            <li>Obtém uma referência para o objeto reCAPTCHA criado anteriormente.</li>
+            <li>Chama a função de login por telefone passando o objeto de autenticação, o número de telefone e o
+                verificador do reCAPTCHA.</li>
+            <li>Quando o resultado da confirmação do número for retornado, a janela de confirmação é atribuída à
+                variável <code>confirmationResult</code>.</li>
+            <li>Solicita ao usuário que digite o código recebido.</li>
+            <li>Confirma o código inserido chamando a função <code>confirm</code> no objeto
+                <code>confirmationResult</code>.
+            </li>
+            <li>Se a confirmação for bem-sucedida, a função fornecida é executada.</li>
+            <li>Se ocorrer algum erro durante o processo de confirmação, o erro é tratado e uma mensagem de erro é
+                exibida no console.</li>
+            <li>Se ocorrer algum erro durante o login por telefone, o erro é tratado e uma mensagem de erro é
+                exibida no console.</li>
+        </ol>
+        <h3>Como utilizar a autenticação por telefone:</h3>
+        <p>A função fireFlash_phoneLogin funciona em duas vias:</p>
+        <ul>
+            <li>O usuário está se conectando pela primeira vez</li>
+            <p>nesse caso o usuário vai passar pela verificação recaptcha, e depois receberá um codigo de <br>
+                confirmação no numero informado, caso tudo ocorra bem ele sera autenticado pelo firebase, caso <br>
+                contrario a tentativa gerará um erro que poderá ser percebido no console de logs
 
-                </p>
-                <li>O usuário já se conectou anteriormente</li>
-                <p>Já nesse caso, o usuário não vai passar pela verificação recaptcha, mas ainda sim, precisará <br>
-                    confirmar o numero através de código enviado por sms para o numero informado</p>
-            </ul>
-            <p>Em Ambos os casos o usuario precisa informar seu numero e posteriormente o codigo recebido, para Isso
-                <br> o DEV precisa ter criado um formulario para receber esses dados do usuario, no caso dessa versão da
-                função <br>
-                o usuário, não precisa informar o local onde o usuario deverá digitar o código recebido, póis um prompt
-                se abrirá <br>
-                para o usuario digitar o código recebido
             </p>
-            <p>Uma ultima observação sobre a função, se deve ao fato de que o DEV informará como parametro uma função
-                que <br>
-                será executada caso a tentativa de login seja sucesso, lembre-se de ser o mais criativo possivel, a fim
-                de manter <br>
-                a acessibilidade, e a interação do usuário com o aplicativo que está desenvolvendo</p>
-        </section>
-
-
+            <li>O usuário já se conectou anteriormente</li>
+            <p>Já nesse caso, o usuário não vai passar pela verificação recaptcha, mas ainda sim, precisará <br>
+                confirmar o numero através de código enviado por sms para o numero informado</p>
+        </ul>
+        <p>Em Ambos os casos o usuario precisa informar seu numero e posteriormente o codigo recebido, para Isso
+            <br> o DEV precisa ter criado um formulario para receber esses dados do usuario, no caso dessa versão da
+            função <br>
+            o usuário, não precisa informar o local onde o usuario deverá digitar o código recebido, póis um prompt
+            se abrirá <br>
+            para o usuario digitar o código recebido
+        </p>
+        <p>Uma ultima observação sobre a função, se deve ao fato de que o DEV informará como parametro uma função
+            que <br>
+            será executada caso a tentativa de login seja sucesso, lembre-se de ser o mais criativo possivel, a fim
+            de manter <br>
+            a acessibilidade, e a interação do usuário com o aplicativo que está desenvolvendo</p>
+    </section>
 
 </body>
 

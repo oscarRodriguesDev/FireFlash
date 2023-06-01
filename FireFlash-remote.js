@@ -179,3 +179,6 @@ export function fireFlash_phoneLogin(id, codigo_pais, ddd, telefone, função,au
     });
 }
 
+//função para interação com banco de dados
+
+
