@@ -59,10 +59,23 @@ section > *:not(h2) {
 }
 
 section h2 {
+ 
   visibility: visible;
-  background-color: aqua;
+  background-color: rgb(13, 62, 62);
+  color:#d4d7d9;
+  font-size: 120%;
+  border: 2px solid black;
+
 }
 
+section h2:hover{
+ 
+  visibility: visible;
+  background-color: rgb(18, 86, 86);
+  color:#ccd0d5;
+  font-size: 121%;
+  border: 2px solid rgba(0, 0, 0, 0.348);
+}
 
 
 code {
