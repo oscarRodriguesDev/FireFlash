@@ -188,7 +188,7 @@
             executada
         </p>
 
-        <h2>Função fireFlash_createAcount</h2>
+        <h3>Função fireFlash_createAcount</h3>
         <p>Vamos entender como funciona a função fireFlash_createAcount.</p>
         <p>A função <i>fireFlash_createAcount</i> tem 4 parâmetros:</p>
         <ol>
@@ -277,7 +277,7 @@
             logs <br>
             do navegador </p>
 
-        <h2>Função fireFlash_login</h2>
+        <h3>Função fireFlash_login</h3>
         <p>Realiza a autenticação de um usuário no Firebase Auth com as credenciais fornecidas (email e senha) e <br>
             executa a função fornecida como parâmetro caso a autenticação seja bem sucedida.</p>
 
@@ -312,7 +312,7 @@
     
     <!--login com emais e senha-->
     <section id="logout" onclick="reveal_section('logout')">
-        <h2>fireFlash_logout</h2>
+        <h2>Realizando logout com FireFlash</h2>
         <p>Realiza a autenticação de um usuário no Firebase Auth e apaga o cookie de autenticação e o <br>
             token de acesso armazenado no navegador.</p>
         <p>Depois de chamar essa função, o usuario precisa logar novamente para continuar utilizando os serviços do
@@ -494,6 +494,61 @@ fireFlash_phoneLogin('cp','+55','55','55555555',message_of_login,auth,RecaptchaV
             de manter <br>
             a acessibilidade, e a interação do usuário com o aplicativo que está desenvolvendo</p>
     </section>
+
+    <!--estado de autenticação-->
+<section id =state-auth onclick="reveal_section('state-auth')">
+    <h2>Verificando estado de autenticação I</h2>
+    <p>É comum em qualquer tipo de aplicativo ou software que precisa armazenar dados, verificar se <br>
+    o usuario está logado ou não, o Firebase tem a funçao <code>onAuthStateChanged </code>  que trata <br>
+exatamente desse tipo de verificação</p>
+<p>Por ser algo de extrema importancia, a biblioteca FireFlash não poderia deixar de tratar <br>
+    sobre ele, vejamos abaixo a primeira solução da biblioteca FireFlash para essa verificação
+</p>
+<h3>Função fireFlash_actionIfState</h3>
+  <p>A função fireFlash_actionIfState verifica se há um usuário autenticado e realiza uma ação definida pelo desenvolvedor de acordo com o estado, autenticado ou não.</p>
+  <ul>
+    <li><strong>stateLogin</strong>: refere-se a uma função nativa do Firebase, que deve ser importada e informada por parâmetro.</li>
+    <li><strong>auth</strong>: também nativo do Firebase, deve ser importado e informado por parâmetro na função.</li>
+    <li><strong>função1</strong>: função chamada caso algum usuário esteja autenticado pelo Firebase.</li>
+    <li><strong>função2</strong>: função chamada caso não haja usuário autenticado pelo Firebase.</li>
+  </ul>
+ <h3>Como utilizar a função fireFlash_actionIfState</h3>
+ <p>Importar o Auth e o onAuthStateChanged, ambos nativos do Firebase</p>
+ <code><pre>import {getAuth,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+</pre></code>
+<p>Importar a função fireFlash_actionIfState do modulo do FireFlash</p>
+<code><pre>import {fireFlash_actionIfState} from "https://oscarrodriguesdev.github.io/FireFlash/FireFlash-remote.js";
+</pre></code>
+<p>no final seu arquivo de configuração deverá estar mais ou menos parecido com esse:</p>
+<code><pre>
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+<b style="color:red"> import {onAuthStateChanged} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";</b>
+<b style="color:red">import {fireFlash_actionIfState} from "https://oscarrodriguesdev.github.io/FireFlash/FireFlash-remote.js";</b>b
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA-1fyyPjlkjhifgfcjhnhjfdchbl,",
+  authDomain: "fireflash-6376c.firebaseapp.com",
+  projectId: "fireflash-6376c",
+  storageBucket: "fireflash25855c.appspot.com",
+  messagingSenderId: "3260125484169",
+  appId: "1:16544567457654:web:1212124512485715254"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth()
+
+</pre></code>
+<p>Por fim basta criar as funções que serão chamadas a depender do estado de autenticação e a seguir <br>
+fazer uma chamada da função fireFlash_actionIfState, passando os parametros necessários</p>
+<code><pre>
+    fireFlash_actionIfState(onAuthStateChanged,auth,function(){
+        alert('usuario logado')
+    },
+    function(){
+        alert('usuario não está logado')
+    })
+</pre></code>
+</section>
 
 </body>
 

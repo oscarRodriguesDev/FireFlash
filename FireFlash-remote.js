@@ -179,6 +179,62 @@ export function fireFlash_phoneLogin(id, codigo_pais, ddd, telefone, função,au
     });
 }
 
-//função para interação com banco de dados
+//verificando o status de login
+
+/**
+
+Verifica se há um usuário autenticado no Firebase Auth e redireciona para a página especificada em page_index caso haja, ou para a página de login especificada em page_login caso contrário.
+@param {string} page_index - O caminho (URL) da página a ser redirecionada caso haja um usuário autenticado.
+@param {string} page_login - O caminho (URL) da página de login a ser redirecionada caso não haja um usuário autenticado.
+@returns {void} Nenhum retorno. A função verifica o estado da autenticação do usuário e redireciona para as páginas especificadas, exibindo mensagens de log no console.
+@example
+// Exemplo de uso:
+fireFlash_redirectIfLogin('/index.html', '/login.html');
+@version 1.0.0
+@author:Oscar Rodrigues
+Data: [11/05/2023]
+*/
+export function fireFlash_redirectIfLogin(page_index, page_login) {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      //...
+      //não realiza nada
+
+      window.location.href = page_index;
+      //...
+    } else {
+      //redireciona para a pagina de login
+      window.location.href = page_login;
+      console.log('Não ha nenhum usuário autenticado')
+    }
+  });
+}
+
+
+/**
+A Função fireFlash_actionIfState verifica se ha usuario autenticado e realiza uma ação definida pelo 
+desenvolvedor de acordo com o estado, autenticado ou não
+@param{function}: stateLogin refere-se a uma função nativa do Firebase, deve ser importada para ser e informada
+por parametro
+@param {object}: auth tambem nativo do Firebase, deve ser importado e informado por paremetro na função
+@param {function}: função1 chamada caso algum usuário esteja autenticado pelo firebase
+@param {function}: função2 chamada caso não haja usuário autenticado pelo firebase
+@return {void} : a funçao possui retorno tipo void
+@author Oscar Rodrigues
+@data 02-06-2023
+*/
+export function fireFlash_actionIfState(stateLogin,auth,função1, função2) {
+  stateLogin(auth, (user) => {
+    if (user) {
+      
+      função1()
+  
+    } else {
+     
+      função2();
+    }
+  });
+}
+
 
 

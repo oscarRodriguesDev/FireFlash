@@ -18,7 +18,8 @@ h1 {
 }
 
 h2 {
-  color: #555;
+  
+  color: #2b2929;
   font-size: 24px;
   margin-top: 20px;
   border-bottom: 1px solid #ccc;
@@ -26,7 +27,7 @@ h2 {
 }
 
 h3 {
-  color: #777;
+  color: #272525;
   font-size: 20px;
   margin-top: 15px;
 }
@@ -53,6 +54,7 @@ section {
 section > *:not(h2) {
   visibility: hidden;
   display: none;
+  text-align: left;
  
 }
 
